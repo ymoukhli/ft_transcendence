@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  # back-end nestJs
+  api:
+    image: nest_api
+    build:
+      dockerfile: dockerfile
+      context: ./api
+    volumes:
+      - ./api:/src/app
+    command: yarn start:debug
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: ${DB_URL}
+      JWT_SECRET: ${JWT_SECRET}
+      PORT: ${API_PORT}
+    ports:
+      - "${API_PORT}:${API_PORT}"
+      - "${API_DEBUG_PORT}:${API_DEBUG_PORT}"
+
+  # front-end nextJs
+  client:
+    image: next_client
+    build:
+      dockerfile: dockerfile
+      context: ./client
+    command: yarn dev -p ${CLIENT_PORT}
+    volumes:
+      - ./client/pages:/src/app/pages
+      - ./client/public:/src/app/public
+      - ./client/styles:/src/app/styles
+    ports:
+      - "${CLIENT_PORT}:${CLIENT_PORT}"
+      - 49153:49153
+    links:
+      - api
+
+  postgres:
+    image: postgres:alpine3.16
+    environment:
+      POSTGRES_USER: "${DB_USER}"
+      POSTGRES_PASSWORD: "${DB_PASSWORD}"
+      POSTGRES_DB: "${DB}"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - 35000:${DB_PORT}
+
+  postgres_admin:
+    image: dpage/pgadmin4:4.28
+    depends_on:
+      - postgres
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "${PGADMIN_EMAIL}"
+      PGADMIN_DEFAULT_PASSWORD: "${PGADMIN_PASSWORD}"
+    ports:
+      - 5050:80
+
+volumes:
+  db-data:
