@@ -1,11 +1,12 @@
-FROM node:alpine
+FROM node:16.16.0
 
 WORKDIR /src/app
 
-COPY package.json yarn.lock  ./
+COPY package.json ./
+COPY yarn.lock ./
+COPY next.config.js .
 
 RUN yarn install
-COPY next.config.js .
 
 COPY pages ./pages
 COPY public ./public

@@ -1,4 +1,4 @@
-    import {
+import {
   Flex,
   Box,
   HStack,
@@ -13,7 +13,7 @@
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-const SignIn = () => {
+const auth = () => {
   return (
     <HStack>
       <Box bg="#051886" w="30vw" h="100vh"></Box>
@@ -28,36 +28,14 @@ const SignIn = () => {
           bg={useColorModeValue('gray.50', 'gray.800')}
         >
           <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
-            <Stack align={'center'}>
-              <Heading fontSize={'4xl'}>Sign in to your account</Heading>
-              <Text fontSize={'lg'} color={'gray.600'}>
-                to chat and make it in the <Link color={'blue.400'}>leaderBoard</Link> ✌️
-              </Text>
-            </Stack>
+
             <Box rounded={'lg'} bg={useColorModeValue('white', 'gray.700')} boxShadow={'lg'} p={8}>
               <Stack spacing={4}>
-                <FormControl id="username">
-                  <FormLabel>Username</FormLabel>
-                  <Input type="text" />
-                </FormControl>
                 <FormControl id="email">
-                  <FormLabel>Email address</FormLabel>
+                  <FormLabel>Your Email</FormLabel>
                   <Input type="email" />
                 </FormControl>
-                <FormControl id="password">
-                  <FormLabel>Password</FormLabel>
-                  <Input type="password" />
-                </FormControl>
-                <FormControl id="password">
-                  <FormLabel>Confirme Password</FormLabel>
-                  <Input type="password" />
-                </FormControl>
-                <Stack spacing={4}>
-                  <Box
-                    align={'start'}
-                  >
-                    {/* <Checkbox>Remember me</Checkbox> */}
-                  </Box>
+                <Stack spacing={10}>
                   <Button
                     bg={'blue.400'}
                     color={'white'}
@@ -65,7 +43,7 @@ const SignIn = () => {
                       bg: 'blue.500',
                     }}
                   >
-                    Sign in
+                    Send
                   </Button>
                 </Stack>
               </Stack>
@@ -73,7 +51,7 @@ const SignIn = () => {
             {/* footer message */}
           </Stack>
           <Box position={'sticky'} top={'94vh'}>
-            already have an account ? <Link href='/auth/login' color={'blue.400'}>LOGIN</Link>
+            don’t have an account yet ? SIGN UP
           </Box>
         </Flex>
       </Box>
@@ -81,4 +59,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default auth;
