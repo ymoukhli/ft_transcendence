@@ -6,9 +6,9 @@ import { SessionProvider } from 'next-auth/react';
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
     <ChakraProvider>
-      <SessionProvider session={session}>
+      <SessionProvider session={session} >
         <Component {...pageProps} />
-      </SessionProvider>
+      </SessionProvider>  
     </ChakraProvider>
   );
 }

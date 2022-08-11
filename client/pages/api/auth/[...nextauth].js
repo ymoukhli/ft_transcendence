@@ -3,16 +3,17 @@ import GoogleProvider from "next-auth/providers/google"
 
 export default NextAuth({
   // Configure one or more authentication providers
+  site: process.env.NEXTAUTH_URL,
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      clientId: process.env.GOOGLE_ID,
+      clientSecret: process.env.GOOGLE_SECRET,
     }),
   ],
 
-  pages: {
-    signIn: "/auth/signin",
-  },
+  // pages: {
+  //   signIn: "/auth/signin",
+  // },
 
   callbacks: {
     async session({ session, token, user}) {

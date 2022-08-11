@@ -11,6 +11,7 @@ RUN yarn install
 COPY pages ./pages
 COPY public ./public
 COPY styles ./styles
+COPY .env ./.env
 
 EXPOSE 3002
 EXPOSE 49153
