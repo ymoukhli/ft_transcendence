@@ -2,6 +2,7 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
+import Router from 'next/router'
 import {
   Flex,
   Box,
@@ -17,9 +18,15 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { useSession, signIn, signOut } from "next-auth/react"
-export default function Component() {
+import { useSession, signIn, signOut, getSession } from "next-auth/react"
+import { useEffect } from 'react';
+export default function Component({serverSession} : any) {
   const { data: session } = useSession()
+
+  useEffect(() => {
+    if (!session && !serverSession)
+      Router.push('/auth/signin');
+  }, [])
   if (session) {
     return (
       <>
@@ -28,14 +35,13 @@ export default function Component() {
       </>
     )
   }
-  return (
-    <>
-      Not signed in <br />
-      <button onClick={() => signIn()}>Sign in</button>
-    </>
-  )
 }
-
+Component.getInitialProps = async (context : any) => {
+  const session = await getSession(context);
+  return {
+    serverSession : session,
+  }
+}
 // const Home: NextPage = () => {
 //   return (
 //     <HStack>

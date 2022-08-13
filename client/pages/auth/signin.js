@@ -12,8 +12,11 @@
   Heading,
   Text,
   useColorModeValue,
+  Img,
 } from '@chakra-ui/react';
-const SignIn = () => {
+import { getProviders, getSession, signIn }  from "next-auth/react";
+const SignIn = ({providers}) => {
+  console.log(providers)
   return (
     <HStack>
       <Box bg="#051886" w="30vw" h="100vh"></Box>
@@ -67,6 +70,7 @@ const SignIn = () => {
                   >
                     Sign in
                   </Button>
+                  <Img w="48px" h="48px" alignSelf={'center'} src='/google.png' onClick={() => signIn('google')}></Img>
                 </Stack>
               </Stack>
             </Box>
@@ -80,5 +84,23 @@ const SignIn = () => {
     </HStack>
   );
 };
+
+SignIn.getInitialProps = async (context) => {
+  const {req, res} = context;
+  const session = await getSession({req});
+  console.log({ });
+
+  if (session && req)
+  {
+    res.writeHead(302, {
+      Location: '/',
+    })
+    res.end();
+    return;
+  }
+  return {
+    providers: await getProviders(context)
+  }
+}
 
 export default SignIn;
