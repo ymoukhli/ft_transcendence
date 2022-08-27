@@ -33,7 +33,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "yarn format && yarn lint",
-      "pre-push": "yarn build"
+      "pre-push": "next build"
     }
   }
 }
