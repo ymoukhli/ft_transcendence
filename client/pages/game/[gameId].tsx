@@ -1,21 +1,20 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
 
-const Home: NextPage = () => {
+const GamePage: NextPage = () => {
 	return (
 		<div>
 			<Head>
-				<title>Transcendence</title>
+				<title>Transcendence | Game</title>
 				<meta name="description" content="ft_transcendence" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
-			<main>Home page</main>
+			<main></main>
 
 			<footer></footer>
 		</div>
 	);
 };
 
-export default Home;
+export default GamePage;
