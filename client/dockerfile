@@ -8,6 +8,7 @@ COPY next.config.js .
 
 RUN yarn install
 
+COPY lib ./lib
 COPY pages ./pages
 COPY public ./public
 COPY styles ./styles
