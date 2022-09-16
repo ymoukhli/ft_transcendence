@@ -1,13 +1,16 @@
 /** @type {import('next').NextConfig} */
+
+const withTM = require('next-transpile-modules')(['three']);
+
 const nextConfig = {
   reactStrictMode: true,
-  webpackDevMiddleware: config => {
+  webpackDevMiddleware: (config) => {
     config.watchOptions = {
       poll: 800,
       aggregateTimeout: 300,
-    }
-    return config
+    };
+    return config;
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = withTM(nextConfig);
