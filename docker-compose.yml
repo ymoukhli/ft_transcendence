@@ -1,6 +1,15 @@
 version: '3.8'
 
 services:
+  transcendence_client:
+    container_name: "transcendence_client"
+    build:
+      context: ./client
+    ports: 
+        - 3000:3000
+    volumes:
+        - ./client:/home/node/client
+
   transcendence_api:
     container_name: "transcendence_api"
     restart: always
