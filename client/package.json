@@ -14,6 +14,7 @@
     "@chakra-ui/react": "^2.2.9",
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
+    "@react-three/drei": "^9.34.3",
     "@react-three/fiber": "^8.7.2",
     "framer-motion": "^7.2.1",
     "next": "12.1.6",
@@ -22,13 +23,14 @@
     "three": "^0.144.0"
   },
   "devDependencies": {
-    "@types/three": "^0.144.0",
     "@types/node": "18.0.0",
     "@types/react": "18.0.14",
     "@types/react-dom": "18.0.5",
+    "@types/three": "^0.144.0",
     "eslint": "8.18.0",
     "eslint-config-next": "12.1.6",
     "husky": "^8.0.1",
+    "leva": "^0.9.31",
     "lint-staged": "^13.0.3",
     "next-transpile-modules": "^9.0.0",
     "prettier": "^2.7.1",
