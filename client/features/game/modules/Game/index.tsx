@@ -3,8 +3,10 @@ import { Mesh } from 'three';
 import { Box } from '@chakra-ui/react';
 import { useRef } from 'react';
 import Paddle from 'features/game/components/Paddle';
-import { useCubeTexture } from '@react-three/drei';
+// import { useCubeTexture } from '@react-three/drei';
 import config from 'config';
+import useDevControls from 'utils/useDevControls';
+import { PerspectiveCamera } from '@react-three/drei';
 
 type GameProps = {
   gameId: string;
@@ -35,9 +37,11 @@ const Cube = () => {
 };
 
 const Game = ({ gameId }: GameProps) => {
+  const { fov, position } = useDevControls({ fov: 75, position: [0, 0, 5] });
   return (
     <Box id="#canvas-container" h="full">
       <Canvas>
+        <PerspectiveCamera fov={fov} position={position} makeDefault />
         <ambientLight color="000000" intensity={1} />
         <directionalLight color="red" position={[0, 0, 5]} />
         <Cube />

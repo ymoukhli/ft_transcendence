@@ -1,5 +1,5 @@
-import { useRef } from "react";
-import { Mesh } from "three";
+import { useRef } from 'react';
+import { Mesh } from 'three';
 
 const Paddle = () => {
   const paddleRef = useRef<Mesh>(null);
