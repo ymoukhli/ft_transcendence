@@ -7,6 +7,7 @@ import Paddle from 'features/game/components/Paddle';
 import config from 'config';
 import useDevControls from 'utils/useDevControls';
 import { PerspectiveCamera } from '@react-three/drei';
+import ControllerWrapper from 'features/game/components/ControllerWrapper';
 
 type GameProps = {
   gameId: string;
@@ -39,15 +40,17 @@ const Cube = () => {
 const Game = ({ gameId }: GameProps) => {
   const { fov, position } = useDevControls({ fov: 75, position: [0, 0, 5] });
   return (
-    <Box id="#canvas-container" h="full">
-      <Canvas>
-        <PerspectiveCamera fov={fov} position={position} makeDefault />
-        <ambientLight color="000000" intensity={1} />
-        <directionalLight color="red" position={[0, 0, 5]} />
-        <Cube />
-        <Paddle />
-      </Canvas>
-    </Box>
+    <ControllerWrapper>
+      <Box id="#canvas-container" h="full">
+        <Canvas>
+          <PerspectiveCamera fov={fov} position={position} makeDefault />
+          <ambientLight color="000000" intensity={1} />
+          <directionalLight color="red" position={[0, 0, 5]} />
+          <Cube />
+          <Paddle />
+        </Canvas>
+      </Box>
+    </ControllerWrapper>
   );
 };
 
