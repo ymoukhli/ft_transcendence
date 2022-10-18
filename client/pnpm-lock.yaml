@@ -4,6 +4,7 @@ specifiers:
   '@chakra-ui/react': ^2.2.9
   '@emotion/react': ^11.10.0
   '@emotion/styled': ^11.10.0
+  '@react-three/cannon': ^6.4.0
   '@react-three/drei': ^9.34.3
   '@react-three/fiber': ^8.7.2
   '@types/node': 18.0.0
@@ -28,6 +29,7 @@ dependencies:
   '@chakra-ui/react': 2.3.2_myeeqde6aezawe6i3s7wqfxkuu
   '@emotion/react': 11.10.4_luyos4mouogwq6z3wafb3re4ce
   '@emotion/styled': 11.10.4_zihtkqst7yq25r5a7lby6nwrdu
+  '@react-three/cannon': 6.4.0_ikiskstzjdttito7yh7yqionoa
   '@react-three/drei': 9.34.3_67uyhnksjibsr7wxhrnlyuwcrm
   '@react-three/fiber': 8.7.3_ww22p6cticflcq7fk2rysgxj34
   framer-motion: 7.3.5_biqbaboplfbrettd7655fr4n2y
@@ -1485,6 +1487,14 @@ packages:
       fastq: 1.13.0
     dev: true
 
+  /@pmndrs/cannon-worker-api/2.2.0_three@0.144.0:
+    resolution: {integrity: sha512-IS1Ewx4PPkz/mAAzfiKy0HtEIECtkwDsAvErEQdEn0EbVUAEnh5f0Pdnv3/1k4afZfuDj0AO+87JlbBcUUpRTw==}
+    peerDependencies:
+      three: '>=0.139'
+    dependencies:
+      three: 0.144.0
+    dev: false
+
   /@popperjs/core/2.11.6:
     resolution: {integrity: sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==}
     dev: false
@@ -1785,6 +1795,23 @@ packages:
 
   /@react-spring/types/9.5.5:
     resolution: {integrity: sha512-7I/qY8H7Enwasxr4jU6WmtNK+RZ4Z/XvSlDvjXFVe7ii1x0MoSlkw6pD7xuac8qrHQRm9BTcbZNyeeKApYsvCg==}
+    dev: false
+
+  /@react-three/cannon/6.4.0_ikiskstzjdttito7yh7yqionoa:
+    resolution: {integrity: sha512-hrT7ploQOCKyP/vVSm9RWN2r2WPxjpTHDNnkxzwa/doK3IyREJ+40Ghor7E7pf76sjRgJFBrypVUSpKDcescTA==}
+    peerDependencies:
+      '@react-three/fiber': '>=8'
+      react: '>=18'
+      three: '>=0.139'
+    dependencies:
+      '@pmndrs/cannon-worker-api': 2.2.0_three@0.144.0
+      '@react-three/fiber': 8.7.3_ww22p6cticflcq7fk2rysgxj34
+      cannon-es: 0.20.0
+      cannon-es-debugger: 1.0.0_6suba3lsybx7swf47tpdbu7xlm
+      react: 18.2.0
+      three: 0.144.0
+    transitivePeerDependencies:
+      - typescript
     dev: false
 
   /@react-three/drei/9.34.3_67uyhnksjibsr7wxhrnlyuwcrm:
@@ -2232,6 +2259,25 @@ packages:
 
   /caniuse-lite/1.0.30001419:
     resolution: {integrity: sha512-aFO1r+g6R7TW+PNQxKzjITwLOyDhVRLjW0LcwS/HCZGUUKTGNp9+IwLC4xyDSZBygVL/mxaFR3HIV6wEKQuSzw==}
+
+  /cannon-es-debugger/1.0.0_6suba3lsybx7swf47tpdbu7xlm:
+    resolution: {integrity: sha512-sE9lDOBAYFKlh+0w+cvWKwUhJef8HYnUSVPWPL0jD15MAuVRQKno4QYZSGxgOoJkMR3mQqxL4bxys2b3RSWH8g==}
+    peerDependencies:
+      cannon-es: 0.x
+      three: 0.x
+      typescript: '>=3.8'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      cannon-es: 0.20.0
+      three: 0.144.0
+      typescript: 4.7.4
+    dev: false
+
+  /cannon-es/0.20.0:
+    resolution: {integrity: sha512-eZhWTZIkFOnMAJOgfXJa9+b3kVlvG+FX4mdkpePev/w/rP5V8NRquGyEozcjPfEoXUlb+p7d9SUcmDSn14prOA==}
+    dev: false
 
   /chalk/2.4.2:
     resolution: {integrity: sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==}
@@ -4503,7 +4549,6 @@ packages:
     resolution: {integrity: sha512-C0WQT0gezHuw6AdY1M2jxUO83Rjf0HP7Sk1DtXj6j1EwkQNZrHAg2XPWlq62oqEhYvONq5pkC2Y9oPljWToLmQ==}
     engines: {node: '>=4.2.0'}
     hasBin: true
-    dev: true
 
   /unbox-primitive/1.0.2:
     resolution: {integrity: sha512-61pPlCD9h51VoreyJ0BReideM3MDKMKnh6+V9L08331ipq6Q8OFXZYiqP6n/tbHx4s5I9uRhcye6BrbkizkBDw==}

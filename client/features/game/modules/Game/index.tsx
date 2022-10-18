@@ -3,10 +3,9 @@ import { Mesh } from 'three';
 import { Box } from '@chakra-ui/react';
 import { useRef } from 'react';
 import Paddle from 'features/game/components/Paddle';
-// import { useCubeTexture } from '@react-three/drei';
-import config from 'config';
 import useDevControls from 'utils/useDevControls';
-import { PerspectiveCamera } from '@react-three/drei';
+import { OrthographicCamera } from '@react-three/drei';
+import { Physics, useSphere } from '@react-three/cannon';
 import ControllerWrapper from 'features/game/components/ControllerWrapper';
 
 type GameProps = {
@@ -15,12 +14,6 @@ type GameProps = {
 
 const Cube = () => {
   const cubeRef = useRef<Mesh>(null);
-  // const texture = useCubeTexture(
-  //   ['px.png', 'nx.png', 'py.png', 'ny.png', 'pz.png', 'ny.png'],
-  //   {
-  //     path: `${config.textures.ENV_PATH}/skies`,
-  //   }
-  // );
 
   useFrame(() => {
     if (cubeRef.current) {
@@ -37,20 +30,23 @@ const Cube = () => {
   );
 };
 
-const Game = ({ gameId }: GameProps) => {
-  const { fov, position } = useDevControls({ fov: 75, position: [0, 0, 5] });
+const Game = ({}: GameProps) => {
+  const { zoom, position } = useDevControls({ position: [0, 0, 3], zoom: 40 });
+
   return (
-    <ControllerWrapper>
-      <Box id="#canvas-container" h="full">
-        <Canvas>
-          <PerspectiveCamera fov={fov} position={position} makeDefault />
-          <ambientLight color="000000" intensity={1} />
-          <directionalLight color="red" position={[0, 0, 5]} />
-          <Cube />
-          <Paddle />
-        </Canvas>
-      </Box>
-    </ControllerWrapper>
+    <Box id="#canvas-container" h="full">
+      <Canvas>
+        <OrthographicCamera position={position} zoom={zoom} makeDefault />
+        <ambientLight color="000000" intensity={1} />
+        <directionalLight color="red" position={[1, 1, 5]} />
+        <ControllerWrapper>
+          <Physics>
+            <Cube />
+            <Paddle />
+          </Physics>
+        </ControllerWrapper>
+      </Canvas>
+    </Box>
   );
 };
 

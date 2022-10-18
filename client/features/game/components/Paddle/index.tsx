@@ -1,30 +1,32 @@
 import { useKeyboardControls } from '@react-three/drei';
-import { useFrame } from '@react-three/fiber';
+import { useFrame, Vector3 } from '@react-three/fiber';
 import { useRef } from 'react';
 import { Mesh } from 'three';
+import { Physics, usePlane, useBox } from '@react-three/cannon';
 
-const Paddle = () => {
+type PaddleProps = {
+  initialPosition?: Vector3;
+};
+
+const Paddle = ({ initialPosition = [26, 0, 0] }: PaddleProps) => {
   const paddleRef = useRef<Mesh>(null);
-  const isPressingUp = useKeyboardControls((state) => {
-    console.log(state);
-    return state.up;
-  });
+  const isPressingUp = useKeyboardControls((state) => state.up);
   const isPressingDown = useKeyboardControls((state) => state.down);
   const isPressingRight = useKeyboardControls((state) => state.right);
   const isPressingLeft = useKeyboardControls((state) => state.left);
 
   useFrame(() => {
     if (paddleRef.current) {
-      if (isPressingUp) paddleRef.current.position.y += 0.01;
-      if (isPressingDown) paddleRef.current.position.y -= 0.01;
-      if (isPressingRight) paddleRef.current.position.x += 0.01;
-      if (isPressingLeft) paddleRef.current.position.x -= 0.01;
+      if (isPressingUp) paddleRef.current.position.y += 0.4;
+      if (isPressingDown) paddleRef.current.position.y -= 0.4;
+      if (isPressingRight) paddleRef.current.position.x += 0.4;
+      if (isPressingLeft) paddleRef.current.position.x -= 0.4;
     }
   });
 
   return (
-    <mesh ref={paddleRef}>
-      <boxGeometry args={[0.5, 3, 1]} />
+    <mesh ref={paddleRef} position={initialPosition}>
+      <boxGeometry args={[1, 5, 1]} />
       <meshBasicMaterial />
     </mesh>
   );
