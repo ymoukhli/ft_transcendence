@@ -1,9 +1,9 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
-import Head from "next/head";
-import Footer from "ui/Footer";
-import Navbar from "ui/Navbar";
-import { Box } from "@chakra-ui/react";
+import Head from 'next/head';
+import Footer from 'ui/Footer';
+import Navbar from 'ui/Navbar';
+import { Box } from '@chakra-ui/react';
 
 type LayoutProps = {
   title: string;
@@ -14,7 +14,7 @@ type LayoutProps = {
 };
 
 const Layout = ({
-  title = "Transcendence",
+  title = 'Transcendence',
   children,
   showFooter,
   showNavbar = true,
@@ -26,7 +26,7 @@ const Layout = ({
       <link rel="icon" href="/favicon.ico" />
     </Head>
     {showNavbar && <Navbar />}
-    <Box as="main" minH="full" h="1px" backgroundColor="black">
+    <Box as="main" minH="full" h="1px" backgroundColor="#262323">
       {children}
     </Box>
     {showFooter && <Footer />}

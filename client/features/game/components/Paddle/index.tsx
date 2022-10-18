@@ -1,31 +1,52 @@
-import { useKeyboardControls } from '@react-three/drei';
 import { useFrame, Vector3 } from '@react-three/fiber';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { Mesh } from 'three';
 import { Physics, usePlane, useBox } from '@react-three/cannon';
 
 type PaddleProps = {
-  initialPosition?: Vector3;
+  enableFullControl?: boolean /* for development only */;
+  initialX?: number;
+  initialY?: number;
+  initialZ?: number;
+  isPressingUp: boolean;
+  isPressingDown: boolean;
+  isPressingRight: boolean;
+  isPressingLeft: boolean;
 };
 
-const Paddle = ({ initialPosition = [26, 0, 0] }: PaddleProps) => {
+const Paddle = ({
+  initialX = 38,
+  initialY = 0,
+  initialZ = 0,
+  enableFullControl = false,
+  isPressingUp = false,
+  isPressingDown = false,
+  isPressingRight = false,
+  isPressingLeft = false,
+}: PaddleProps) => {
   const paddleRef = useRef<Mesh>(null);
-  const isPressingUp = useKeyboardControls((state) => state.up);
-  const isPressingDown = useKeyboardControls((state) => state.down);
-  const isPressingRight = useKeyboardControls((state) => state.right);
-  const isPressingLeft = useKeyboardControls((state) => state.left);
 
   useFrame(() => {
     if (paddleRef.current) {
       if (isPressingUp) paddleRef.current.position.y += 0.4;
       if (isPressingDown) paddleRef.current.position.y -= 0.4;
-      if (isPressingRight) paddleRef.current.position.x += 0.4;
-      if (isPressingLeft) paddleRef.current.position.x -= 0.4;
+      if (enableFullControl) {
+        if (isPressingRight) paddleRef.current.position.x += 0.4;
+        if (isPressingLeft) paddleRef.current.position.x -= 0.4;
+      }
     }
   });
 
+  useEffect(() => {
+    if (!enableFullControl && paddleRef.current) {
+      paddleRef.current.position.x = initialX;
+      paddleRef.current.position.y = initialY;
+      paddleRef.current.position.z = initialZ;
+    }
+  }, [enableFullControl]);
+
   return (
-    <mesh ref={paddleRef} position={initialPosition}>
+    <mesh ref={paddleRef} position={[initialX, initialY, initialZ]}>
       <boxGeometry args={[1, 5, 1]} />
       <meshBasicMaterial />
     </mesh>
