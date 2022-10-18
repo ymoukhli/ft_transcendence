@@ -22,6 +22,7 @@ specifiers:
   prettier: ^2.7.1
   react: 18.2.0
   react-dom: 18.2.0
+  react-use-measure: ^2.1.1
   three: ^0.144.0
   typescript: 4.7.4
 
@@ -36,6 +37,7 @@ dependencies:
   next: 12.3.1_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-use-measure: 2.1.1_biqbaboplfbrettd7655fr4n2y
   three: 0.144.0
 
 devDependencies:
