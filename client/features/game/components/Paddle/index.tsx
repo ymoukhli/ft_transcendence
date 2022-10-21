@@ -1,54 +1,76 @@
-import { useFrame, Vector3 } from '@react-three/fiber';
+import { useFrame } from '@react-three/fiber';
 import { useEffect, useRef } from 'react';
 import { Mesh } from 'three';
-import { Physics, usePlane, useBox } from '@react-three/cannon';
+import { useSphere, useBox } from '@react-three/cannon';
 
 type PaddleProps = {
-  enableFullControl?: boolean /* for development only */;
   initialX?: number;
   initialY?: number;
   initialZ?: number;
-  isPressingUp: boolean;
-  isPressingDown: boolean;
-  isPressingRight: boolean;
-  isPressingLeft: boolean;
+  isPressingUp?: boolean;
+  isPressingDown?: boolean;
+  forcePosition?: boolean;
+  positionX?: number;
+  positionY?: number;
+  positionZ?: number;
 };
 
 const Paddle = ({
   initialX = 38,
   initialY = 0,
   initialZ = 0,
-  enableFullControl = false,
   isPressingUp = false,
   isPressingDown = false,
-  isPressingRight = false,
-  isPressingLeft = false,
+  forcePosition = false,
+  positionX = -38,
+  positionY = 0,
+  positionZ = 0,
 }: PaddleProps) => {
-  const paddleRef = useRef<Mesh>(null);
+  // const paddleRef = useRef<Mesh>(null);
+  const [paddleRef, api] = useBox<Mesh>(() => ({
+    mass: 0,
+    position: [initialX, initialY, initialZ],
+    args: [1, 5, 100],
+    type: 'Static',
+  }));
 
+  const currentPositionRef = useRef([initialX, initialY, initialZ]);
+  useEffect(() => {
+    const unsubscribe = api.position.subscribe(
+      (v) => (currentPositionRef.current = v)
+    );
+    return unsubscribe;
+  }, []);
+
+  // const [ref, api] = useBox(() => ({mass}));
   useFrame(() => {
+    // console.log(paddleRef.current);
     if (paddleRef.current) {
-      if (isPressingUp) paddleRef.current.position.y += 0.4;
-      if (isPressingDown) paddleRef.current.position.y -= 0.4;
-      if (enableFullControl) {
-        if (isPressingRight) paddleRef.current.position.x += 0.4;
-        if (isPressingLeft) paddleRef.current.position.x -= 0.4;
+      if (forcePosition) {
+        api.position.set(positionX, positionY, positionZ);
+      } else {
+        if (isPressingUp) {
+          api.position.set(
+            currentPositionRef.current[0],
+            currentPositionRef.current[1] + 0.4,
+            currentPositionRef.current[2]
+          );
+        }
+        if (isPressingDown) {
+          api.position.set(
+            currentPositionRef.current[0],
+            currentPositionRef.current[1] - 0.4,
+            currentPositionRef.current[2]
+          );
+        }
       }
     }
   });
 
-  useEffect(() => {
-    if (!enableFullControl && paddleRef.current) {
-      paddleRef.current.position.x = initialX;
-      paddleRef.current.position.y = initialY;
-      paddleRef.current.position.z = initialZ;
-    }
-  }, [enableFullControl]);
-
   return (
-    <mesh ref={paddleRef} position={[initialX, initialY, initialZ]}>
-      <boxGeometry args={[1, 5, 1]} />
-      <meshBasicMaterial />
+    <mesh castShadow ref={paddleRef} position={[initialX, initialY, initialZ]}>
+      <boxGeometry args={[1, 5, 0.1]} />
+      <meshToonMaterial />
     </mesh>
   );
 };
