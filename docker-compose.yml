@@ -39,13 +39,12 @@ services:
     networks:
       - backend-net
     restart: always
-  
-  redis_auth_session:
-    container_name: "transcendence_redis"
-    image: redis:alpine
+
+  redis:
+    image: redis
+    container_name: redis
     networks:
       - backend-net
-    restart: always
 
 
 volumes:
