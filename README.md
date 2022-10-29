@@ -32,3 +32,34 @@ run the development server:
 ```bash
 docker-compose up --build
 ```
+
+## Git workflow
+### Pull requests Naming:
+```
+[JIRA_PROJECT_IDENTIFIER-TICKET_NUMBER][FEAT/FIX/DOC/STYLE/REFACTOR] Jira Ticket title
+- FEAT: (new feature)
+- FIX: (bug fix)
+- DOC: (changes to the documentation)
+- STYLE: (formatting, missing semi colons, etc)
+- REFACTOR: (refactoring code, eg. renaming a variable)
+
+ft_transcendence jira identifier: TRAN
+
+Example:
+Pull request title: [TRAN-1][FEAT] Ticket title
+```
+### Branch Naming:
+```
+[CONTRIBUTORId]-[FEAT/FIX/DOC/STYLE/REFACTOR]-[JIRA_PROJECT_IDENTIFIER]-[TICKET_NUMBER]
+
+Example:
+branch name: AF-FEAT-TRAN-1
+```
+
+### Commit message naming:
+```
+[JIRA_PROJECT_IDENTIFIER-TICKET_NUMBER] commit message
+
+Example:
+commit message: [TRAN-1] Create X feature
+```
