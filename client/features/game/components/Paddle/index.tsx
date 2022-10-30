@@ -1,7 +1,7 @@
 import { useFrame } from '@react-three/fiber';
 import { useEffect, useRef } from 'react';
 import { Mesh } from 'three';
-import { useSphere, useBox } from '@react-three/cannon';
+import { useBox } from '@react-three/cannon';
 
 type PaddleProps = {
   initialX?: number;
@@ -26,11 +26,10 @@ const Paddle = ({
   positionY = 0,
   positionZ = 0,
 }: PaddleProps) => {
-  // const paddleRef = useRef<Mesh>(null);
   const [paddleRef, api] = useBox<Mesh>(() => ({
     mass: 0,
     position: [initialX, initialY, initialZ],
-    args: [1, 5, 100],
+    args: [1, 5, 10],
     type: 'Static',
   }));
 
@@ -42,9 +41,7 @@ const Paddle = ({
     return unsubscribe;
   }, []);
 
-  // const [ref, api] = useBox(() => ({mass}));
   useFrame(() => {
-    // console.log(paddleRef.current);
     if (paddleRef.current) {
       if (forcePosition) {
         api.position.set(positionX, positionY, positionZ);
@@ -69,8 +66,8 @@ const Paddle = ({
 
   return (
     <mesh castShadow ref={paddleRef} position={[initialX, initialY, initialZ]}>
-      <boxGeometry args={[1, 5, 0.1]} />
-      <meshToonMaterial />
+      <boxGeometry args={[1, 5, 0.5]} />
+      <meshStandardMaterial />
     </mesh>
   );
 };

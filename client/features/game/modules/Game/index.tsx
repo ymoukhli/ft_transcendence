@@ -12,7 +12,12 @@ const Game = ({}: GameProps) => {
   const [ref, bounds] = useMeasure();
 
   return (
-    <Box id="#canvas-container" h={`${(bounds.width * 9) / 16}px`} bg="black">
+    <Box
+      id="#canvas-container"
+      maxH="100vh"
+      h={`${(bounds.width * 9) / 16}px`}
+      bg="black"
+    >
       <Canvas
         ref={ref}
         dpr={
