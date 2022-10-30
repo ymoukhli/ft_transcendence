@@ -24,7 +24,7 @@ export class FortyTwoStrategy extends PassportStrategy(Strategy) {
     const lastName = profile?._json['last_name'].toLowerCase();
     const imageUrl = profile?._json['image_url'];
     const userDetails = {
-      login,
+      username: login,
       firstName,
       lastName,
       imageUrl,

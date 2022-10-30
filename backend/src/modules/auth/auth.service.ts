@@ -8,13 +8,13 @@ export class AuthService implements AuthenticationProvider {
   constructor(private readonly usersService: UsersService) {}
 
   async validateUser(userDetails: User) {
-    const { login } = userDetails;
-    const user = await this.usersService.findOneByLogin(login);
+    const { username } = userDetails;
+    const user = await this.usersService.findOneByLogin(username);
     if (user) return user;
     return this.usersService.create(userDetails);
   }
 
-  findUser(login: string): Promise<User> | undefined {
-    return this.usersService.findOneByLogin(login);
+  findUser(username: string): Promise<User> | undefined {
+    return this.usersService.findOneByLogin(username);
   }
 }
