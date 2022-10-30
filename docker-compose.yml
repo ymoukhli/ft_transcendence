@@ -40,9 +40,23 @@ services:
       - backend-net
     restart: always
 
-  redis_auth_session:
-    container_name: "redis_auth_session"
-    image: redis:alpine
+  transcendence_client:
+    container_name: "transcendence_client"
+    restart: always
+    depends_on:
+      - transcendence_db
+    build:
+      context: ./client
+    ports:
+      - 3000:3000
+    volumes:
+      - ./client:/home/client
+    networks:
+      - client-net
+
+  redis:
+    image: redis
+    container_name: redis
     networks:
       - backend-net
     restart: always
@@ -53,3 +67,4 @@ volumes:
 
 networks:
   backend-net:
+  client-net:
