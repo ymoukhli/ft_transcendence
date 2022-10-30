@@ -16,8 +16,6 @@ export class AuthController {
   @Get('42/login')
   @UseGuards(FortyTwoAuthGuard)
   login() {
-    console.log(process.env.CALLBACK_URL)
-    console.log('login');
     return ;
   }
 
@@ -25,7 +23,6 @@ export class AuthController {
   @Redirect('/', 301)
   @UseGuards(FortyTwoAuthGuard)
   redirect() {
-    console.log('redirection');
     return ;
   }
 
