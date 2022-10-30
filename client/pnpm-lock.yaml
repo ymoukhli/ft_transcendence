@@ -15,6 +15,7 @@ specifiers:
   eslint-config-next: 12.1.6
   framer-motion: ^7.2.1
   husky: ^8.0.1
+  immer: ^9.0.16
   leva: ^0.9.31
   lint-staged: ^13.0.3
   next: 12.3.1
@@ -34,6 +35,7 @@ dependencies:
   '@react-three/drei': 9.34.3_67uyhnksjibsr7wxhrnlyuwcrm
   '@react-three/fiber': 8.7.3_ww22p6cticflcq7fk2rysgxj34
   framer-motion: 7.3.5_biqbaboplfbrettd7655fr4n2y
+  immer: 9.0.16
   next: 12.3.1_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -3201,6 +3203,10 @@ packages:
     resolution: {integrity: sha512-CmxgYGiEPCLhfLnpPp1MoRmifwEIOgjcHXxOBjv7mY96c+eWScsOP9c112ZyLdWHi0FxHjI+4uVhKYp/gcdRmQ==}
     engines: {node: '>= 4'}
     dev: true
+
+  /immer/9.0.16:
+    resolution: {integrity: sha512-qenGE7CstVm1NrHQbMh8YaSzTZTFNP3zPqr3YU0S0UY441j4bJTg4A2Hh5KAhwgaiU6ZZ1Ar6y/2f4TblnMReQ==}
+    dev: false
 
   /import-fresh/3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
