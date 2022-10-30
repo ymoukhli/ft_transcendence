@@ -1,4 +1,5 @@
 import { Debug } from '@react-three/cannon';
+import { Stats } from '@react-three/drei';
 import React, { ReactNode } from 'react';
 import useDevControls from 'utils/useDevControls';
 
@@ -11,9 +12,12 @@ const DebugPhysics = ({ enabled = false, children }: DebugPhysicsProps) => {
   const { isEnabled } = useDevControls({ isEnabled: enabled });
 
   return isEnabled ? (
-    <Debug color="red" scale={1}>
-      {children}
-    </Debug>
+    <>
+      <Stats />
+      <Debug color="red" scale={1}>
+        {children}
+      </Debug>
+    </>
   ) : (
     <>{children}</>
   );

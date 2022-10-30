@@ -5,21 +5,19 @@ import { useLocalPlayerControls } from 'utils/usePlayerControls';
 import Cameras from 'features/game/components/Cameras';
 import Lights from 'features/game/components/Lights';
 import DebugPhysics from 'features/game/components/DebugMode';
-import MapWall from 'features/game/components/MapWall';
 import Ball from 'features/game/components/Ball';
+import Score from 'features/game/components/Score';
 
 const RenderedContent = () => {
   const {
     initialPlayerPaddlePosition,
     initialOpponentPaddlePosition,
     sphereRadius,
-    planePosition,
     enableDebugPhysics,
   } = useDevControls({
     initialPlayerPaddlePosition: [38, 0, 0],
     initialOpponentPaddlePosition: [-38, 0, 0],
     sphereRadius: 0.8,
-    planePosition: [0, 30, 0],
     enableDebugPhysics: true,
   });
 
@@ -29,9 +27,13 @@ const RenderedContent = () => {
     <>
       <Cameras />
       <Lights />
+      <Score />
       <Physics>
         <DebugPhysics enabled={enableDebugPhysics}>
-          <Ball radius={sphereRadius} />
+          <Ball
+            radius={sphereRadius}
+            goalXPosition={initialPlayerPaddlePosition[0] + 2}
+          />
           <Paddle
             initialX={initialPlayerPaddlePosition[0]}
             initialY={initialPlayerPaddlePosition[1]}
@@ -46,11 +48,6 @@ const RenderedContent = () => {
             initialZ={initialOpponentPaddlePosition[2]}
             forcePosition
           />
-          {/* <MapWall position={planePosition} type="Static" />
-          <MapWall
-            position={[planePosition[0], -planePosition[1], planePosition[2]]}
-            type="Static"
-          /> */}
         </DebugPhysics>
       </Physics>
     </>
