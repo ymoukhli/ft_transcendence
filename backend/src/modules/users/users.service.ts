@@ -16,7 +16,7 @@ export class UsersService {
   findOneByLogin(login: string) {
     return this.usersRepository.findOne({
       where: {
-        username: login,
+        login,
       },
     })
   }

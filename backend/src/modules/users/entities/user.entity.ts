@@ -19,7 +19,7 @@ export class User {
   @Column({ unique: true })
   @MinLength(3)
   @MaxLength(20)
-  username: string;
+  login: string;
 
   @Column({ default: null })
   @MinLength(3)
