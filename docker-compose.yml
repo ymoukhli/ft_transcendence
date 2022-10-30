@@ -40,6 +40,13 @@ services:
       - backend-net
     restart: always
 
+  redis:
+    image: redis
+    container_name: redis
+    networks:
+      - backend-net
+
+
 volumes:
   postgres-data:
 

@@ -9,5 +9,4 @@ WORKDIR /home/node/app
 CMD "sleep" "5" &&\
     "echo" "Postgres is up..."  &&\
     "npm" "i" &&\
-    "npm" "run" "build" &&\
     "npm" "run" "start:dev"
