@@ -40,11 +40,12 @@ services:
       - backend-net
     restart: always
 
-  redis:
-    image: redis
-    container_name: redis
+  redis_auth_session:
+    container_name: "redis_auth_session"
+    image: redis:alpine
     networks:
       - backend-net
+    restart: always
 
 
 volumes:
