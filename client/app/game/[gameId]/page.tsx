@@ -1,15 +1,15 @@
+'use client';
 import type { NextPage } from 'next';
 import Layout from 'ui/Layout';
 import Game from 'features/game/modules/Game';
-import { useRouter } from 'next/router';
+import { useSearchParams } from 'next/navigation';
 
 const GamePage: NextPage = () => {
-  const router = useRouter();
-  const gameId =
-    typeof router.query.gameId == 'string' ? router.query.gameId : '';
+  const params = useSearchParams();
+  const gameId = params.get('gameId') || '';
 
   return (
-    <Layout showNavbar={false} title="Transcendence | Game">
+    <Layout showNavbar={false}>
       <Game gameId={gameId} />
     </Layout>
   );
