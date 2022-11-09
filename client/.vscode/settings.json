@@ -7,6 +7,7 @@
   },
   "editor.detectIndentation": false,
   "editor.insertSpaces": true,
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "cSpell.language": "en-GB"
+  "typescript.tsdk": "./node_modules/typescript/lib",
+  "cSpell.language": "en-GB",
+  "typescript.enablePromptUseWorkspaceTsdk": true
 }
