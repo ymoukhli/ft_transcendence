@@ -23,6 +23,16 @@ export class User {
 
   @Column({ default: null })
   @MinLength(3)
+  @MaxLength(40)
+  email: string;
+
+  @Column({ default: null })
+  @MinLength(3)
+  @MaxLength(20)
+  password: string;
+
+  @Column({ default: null })
+  @MinLength(3)
   @MaxLength(20)
   displayedName: string;
 
