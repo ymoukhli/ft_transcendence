@@ -8,10 +8,10 @@ import * as session from 'express-session';
 import * as connectRedis from 'connect-redis';
 import * as passport from 'passport';
 import { ONE_DAY_IN_MS } from './modules/constants';
-
+import { NestExpressApplication } from '@nestjs/platform-express';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
   app.setGlobalPrefix('api');
   const config = new DocumentBuilder()
     .setTitle('Transcendence API')
@@ -48,6 +48,7 @@ async function bootstrap() {
   );
   app.use(passport.initialize());
   app.use(passport.session());
-  await app.listen(4000);
+
+  await app.listen(process.env.APP_PORT || 4000);
 }
 bootstrap();

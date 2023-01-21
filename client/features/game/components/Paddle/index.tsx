@@ -2,6 +2,7 @@ import { useFrame } from '@react-three/fiber';
 import { useEffect, useRef } from 'react';
 import { Mesh } from 'three';
 import { useBox } from '@react-three/cannon';
+import config from 'config';
 
 type PaddleProps = {
   initialX?: number;
@@ -49,14 +50,14 @@ const Paddle = ({
         if (isPressingUp) {
           api.position.set(
             currentPositionRef.current[0],
-            currentPositionRef.current[1] + 0.4,
+            currentPositionRef.current[1] + config.player.modeSpeed,
             currentPositionRef.current[2]
           );
         }
         if (isPressingDown) {
           api.position.set(
             currentPositionRef.current[0],
-            currentPositionRef.current[1] - 0.4,
+            currentPositionRef.current[1] - config.player.modeSpeed,
             currentPositionRef.current[2]
           );
         }

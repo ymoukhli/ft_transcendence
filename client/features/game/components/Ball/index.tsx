@@ -1,5 +1,4 @@
 import { usePlane, useSphere } from '@react-three/cannon';
-import { useStore } from '@react-three/fiber';
 import { useGameStore } from 'features/game/stores/gameStore';
 import { useCallback, useEffect, useRef } from 'react';
 import { Mesh } from 'three';

@@ -6,10 +6,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from '../users/entities/user.entity';
 import { UsersModule } from '../users/users.module';
 import { AuthModule } from '../auth/auth.nodule';
+import { GameModule } from '../game/game.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot({
-    type: process.env.DB_TYPE as any,
+  imports: [
+    TypeOrmModule.forRoot({
+      type: process.env.DB_TYPE as any,
       host: process.env.POSTGRES_HOST,
       port: +process.env.POSTGRES_PORT,
       username: process.env.POSTGRES_USER,
@@ -17,11 +19,12 @@ import { AuthModule } from '../auth/auth.nodule';
       entities: [User],
       database: process.env.POSTGRES_DB,
       synchronize: true,
-  }),
-  PassportModule.register({ session: true }),
-  UsersModule,
-  AuthModule,
-],
+    }),
+    PassportModule.register({ session: true }),
+    UsersModule,
+    AuthModule,
+    GameModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
