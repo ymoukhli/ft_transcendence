@@ -17,7 +17,7 @@ Note: each env file will need a copy of an environment variable if required.
 | `CLIENT_SECRET`     | true     | `string` | -                           | node app | Application secret key know only by the application and auth server  |
 | `CALLBACK_URL`      | true     | `string` | -                           | node app | URL to redirect to after a successful authentication                 |
 | `CALLBACK_URL`      | true     | `string` | -                           | node app | URL to redirect to after a successful authentication                 |
-| `SESSION_SECRET`    | true     | `string` | -redis://redis_auth_session | node app | Random generated key used to encrypt cookies                         |
+| `SESSION_SECRET`    | true     | `string` | -redis://redis              | node app | Random generated key used to encrypt cookies                         |
 | `APP_PORT`          | false    | `number` | - 4000                      | node app | Port that the app listens to                                         |
 
 ## Env variables for database [.env.db.*]
