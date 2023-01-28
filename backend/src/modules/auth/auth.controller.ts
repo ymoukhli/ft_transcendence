@@ -20,7 +20,7 @@ export class AuthController {
   }
 
   @Get('42/callback')
-  @Redirect('/', 301)
+  @Redirect(process.env.BASE_URL, HttpStatus.FOUND)
   @UseGuards(FortyTwoAuthGuard)
   redirect() {
     return ;
